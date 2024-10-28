@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>JS Tetris 2</title>
+  </head>
+  <body>
+    Select Grid Size:
+    <select id="grid-size" class="select">
+      <option selected value="8">8X8</option>
+      <option value="10">10X10</option>
+      <option value="12">12X12</option>
+    </select>
+    <div id="grid" class="grid grid-8"></div>
+    
+    <div id="player1" class="grid grid-30"></div>
+    <div id="player2" class="grid grid-30"></div>
+
+    <div class="debug">
+      <button onClick="printGrid()">Grid Object</button>
+    </div>
+  </body>
+  <script src="./app.js"></script>
+  <style>
+    .grid {
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      margin: 0 auto;
+    }
+    .grid-8 {
+      width: 400px;
+    }
+    .grid-10 {
+      width: 500px;
+    }
+    .grid-12 {
+      width: 600px;
+    }
+    .grid-30 {
+      margin-top:30px;
+      width:850px;
+    }
+    .block{
+      flex: 1;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-content: stretch;
+      justify-content: flex-end;
+    }
+    .cell {
+      border-collapse: collapse;
+      width: 50px;
+      height: 50px;
+      border: 1px solid #acacac;
+      box-sizing: border-box;
+      position: relative;
+      background-color: #fff;
+    }
+    .block.dragging {
+      opacity: 0.2; 
+    }
+    .cell:before {
+      content: " ";
+      border: 1px solid #ccc;
+      position: absolute;
+      width: 40px;
+      height: 40px;
+      left: 3px;
+      z-index: 20;
+      top: 3px;
+      background-color: inherit;
+    }
+    .cell:after {
+      position: absolute;
+      content: " ";
+      border: 1px solid #ccc;
+      left: -12px;
+      width: 69px;
+      height: 0px;
+      transform: rotate(45deg);
+      top: 24px;
+      z-index: 10;
+    }
+    
+    .cell-small {
+      width: 25px;
+      height: 25px;
+    }
+    .cell-small:before {
+      width: 20px;
+      height: 20px;
+      left:1px;
+      top:1px;
+    }
+    .cell-small:after{
+      display: none;
+    }
+    .cell[data-color="blueviolet"] {
+      background-color: blueviolet;
+    }
+    .cell[data-color="orangered"] {
+      background-color: orangered;
+    }
+    .cell.show-position {
+      opacity: 0.2;
+      background-color: orange
+    }
+    .cell.explode{
+      box-shadow: 0 0 0 10px rgb(83, 224, 83),
+        0 0 0 20px rgb(83, 224, 83),
+        0 0 0 30px rgb(83, 224, 83),
+        0 0 0 40px rgb(82, 226, 82),
+        0 0 0 60px rgb(37, 214, 37),
+        0 0 0 100px rgb(27, 165, 27),
+        0 0 0 150px rgb(63, 235, 63);
+    }
+  </style>
+</html>
